@@ -163,7 +163,7 @@ public class MyConnectionService extends ConnectionService {
               }
             }
         };
-        connection.setAddress(Uri.parse(request.getExtras().getString("to")), TelecomManager.PRESENTATION_ALLOWED);
+        connection.setAddress(Uri.parse(request.getAddress().toString()), TelecomManager.PRESENTATION_ALLOWED);
         Icon icon = CordovaCall.getIcon();
         if(icon != null) {
             StatusHints statusHints = new StatusHints((CharSequence)"", icon, new Bundle());
