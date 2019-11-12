@@ -163,7 +163,8 @@ public class MyConnectionService extends ConnectionService {
               }
             }
         };
-        connection.setAddress(Uri.parse(request.getAddress().toString()), TelecomManager.PRESENTATION_ALLOWED);
+        String phoneNumber = request.getAddress().toString();
+        connection.setAddress(Uri.parse(phoneNumber), TelecomManager.PRESENTATION_ALLOWED);
         Icon icon = CordovaCall.getIcon();
         if(icon != null) {
             StatusHints statusHints = new StatusHints((CharSequence)"", icon, new Bundle());
@@ -176,7 +177,7 @@ public class MyConnectionService extends ConnectionService {
             for (final CallbackContext callbackContext : callbackContexts) {
                 CordovaCall.getCordova().getThreadPool().execute(new Runnable() {
                     public void run() {
-                        PluginResult result = new PluginResult(PluginResult.Status.OK, "sendCall event called successfully");
+                        PluginResult result = new PluginResult(PluginResult.Status.OK, phoneNumber);
                         result.setKeepCallback(true);
                         callbackContext.sendPluginResult(result);
                     }
